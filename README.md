@@ -9,28 +9,31 @@ ENV VARIABLES:
   -  3) 'echo $PATH' should result in the PATH variable being printed
   -  4) 'env' should result in the environmental list to be printed, including the PATH variable
   -  5) same for 'PWD' -> if someone unsets PWD, this variable must be recreated when launching Minishell and included in the env list
+ 
  For PWD only, please note that if you are positioned in a symlink when opening minishell, the 'echo $PWD' command must deliver the correct path you are on.
-        STEPS to replicate this behavior:
-        a) in the minishell directory: 'mkdir testdir'
-        b) 'ln -s testdir link'
-        c) move into the link: cd link
-        d) create another directory: mkdir testdir2
-        e) create another link: ln -s testdir2 link2
-        f) now, if you write 'pwd', you should be positioned into your first link. The result should be something like: "~>/..../.../minishell/link"
-        g) now launch minishell from this position, as such: "../minishell"
-        h) now write "pwd" -> the result should be the same as the one you had previously, before launching minishell: "~>/..../.../minishell/link"
-        i) check $PWD -> 'echo $PWD', should be the same as the command 'pwd'
-        i) move into the second link: cd link2
-        j) 'pwd' should result in:  "~>/..../.../minishell/link/link2"
-        k) 'echo $PWD' should also result in "~>/..../.../minishell/link/link2"
-        l) unset PWD
-        m) 'echo $PWD' shoudl result in an empty newline
-        n) 'pwd' should still print the path: "~>/..../.../minishell/link/link2"
-        o) cd ..
-        p) 'env' should present a list WITHOUT PWD in it
-        r) 'echo $PWD' should print "~>/..../.../minishell/link"
-        s) 'pwd' should also print "~>/..../.../minishell/link"
-        t) 'echo $OLDPWD' should result in an empty space
+ 
+  STEPS to replicate this behavior:
+  
+      - in the minishell directory: 'mkdir testdir'
+      - 'ln -s testdir link'
+      - move into the link: cd link
+      - create another directory: mkdir testdir2
+      - create another link: ln -s testdir2 link2
+      - now, if you write 'pwd', you should be positioned into your first link. The result should be something like: "~>/..../.../minishell/link"
+      - now launch minishell from this position, as such: "../minishell"
+      - now write "pwd" -> the result should be the same as the one you had previously, before launching minishell: "~>/..../.../minishell/link"
+      - check $PWD -> 'echo $PWD', should be the same as the command 'pwd'
+      - move into the second link: cd link2
+      - 'pwd' should result in:  "~>/..../.../minishell/link/link2"
+      - 'echo $PWD' should also result in "~>/..../.../minishell/link/link2"
+      - unset PWD
+      - 'echo $PWD' shoudl result in an empty newline
+      - 'pwd' should still print the path: "~>/..../.../minishell/link/link2"
+      - cd ..
+      - 'env' should present a list WITHOUT PWD in it
+      - 'echo $PWD' should print "~>/..../.../minishell/link"
+      - 'pwd' should also print "~>/..../.../minishell/link"
+      - 'echo $OLDPWD' should result in an empty space
 
 BUILTINS:
 *echo:
