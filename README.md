@@ -3,13 +3,13 @@ Tests to be performed while evaluating the Minishell / while building up Minishe
 
 ENV VARIABLES:
   - when launching bash (from any application), the 'env' command will print the environmental variables
-  - if a student unsets the variables BEFORE launching Minishell, the Minishell program must be able to replicate bash behaviour, according to the subject, as such:
-      1) unset PATH
-      2) launch minishell
-      3) 'echo $PATH' should result in the PATH variable being printed
-      4) 'env' should result in the environmental list to be printed, including the PATH variable
-  - same for 'PWD' -> if someone unsets PWD, this variable must be recreated when launching Minishell and included in the env list
-      1) for PWD only, please note that if you are positioned in a symlink when opening minishell, the 'echo $PWD' command must deliver the correct path you are on.
+  - if a student unsets the variables BEFORE launching Minishell, the Minishell program must be able to replicate bash behaviour, according to the subject;
+  -  1) unset PATH
+  -  2) launch minishell
+  -  3) 'echo $PATH' should result in the PATH variable being printed
+  -  4) 'env' should result in the environmental list to be printed, including the PATH variable
+  -  5) same for 'PWD' -> if someone unsets PWD, this variable must be recreated when launching Minishell and included in the env list
+ For PWD only, please note that if you are positioned in a symlink when opening minishell, the 'echo $PWD' command must deliver the correct path you are on.
         STEPS to replicate this behavior:
         a) in the minishell directory: 'mkdir testdir'
         b) 'ln -s testdir link'
