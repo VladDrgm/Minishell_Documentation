@@ -34,6 +34,9 @@ For PWD only, please note that if you are positioned in a symlink when opening m
 - `pwd` should also print `~>/..../.../minishell/link`
 - `echo $OLDPWD` should result in an empty space
 
+*ALTERNATIVELY, a student can choose NOT to replicate this behaviour, but to simply protect against this behaviour.
+This means that a student must make sure the code doesn't segfault / crash and that it throws an error / finds an alternative to not having a PATH*
+
 ## BUILTINS
 ### echo
   - `echo lala` => `lala\n`
